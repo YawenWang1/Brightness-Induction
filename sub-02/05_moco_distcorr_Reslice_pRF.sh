@@ -2,7 +2,7 @@
 ################################################################################
 
 # Run Motion correction for all runs
-# 0h:9m:39s.
+# 0h:34m
 ################################################################################
 # Directory of sri's motion correction and distortion correction code
 start_tme=$(date +%s)
