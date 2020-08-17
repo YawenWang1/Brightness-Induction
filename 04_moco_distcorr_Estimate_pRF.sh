@@ -18,18 +18,18 @@ normal=$(tput sgr0)
 
 
 Pth='/media/h/P04/Data/BIDS/'
-subject_id='sub-02'
+subject_id='sub-03'
 session_id='ses-001'
 TR=2.604
 ope_Pth=${Pth}${subject_id}/${session_id}/func/func_ope/
-ope_Image=sub-02_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_echo-1_bold
+ope_Image=sub-03_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_echo-1_bold
 
 ################################################################################
 #            Create a Mask and fixed functional Image first                    #
 # START MOTION CORRECTION ON FIRST 5 VOLS
 FixRunID=1
 fun_Pth=${Pth}${subject_id}/${session_id}/func/
-pRF_prefix='sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
+pRF_prefix='sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
 fun_suffix='_echo-1_bold'
 fun_roi_suffix='_echo-1_bold_roi'
 suffix='.nii.gz'
@@ -128,7 +128,7 @@ echo " "
 
 $ANTSPATH/ImageMath \
 4 \
-${ope_split}/${ope_Image}_MoCorr.nii.gz \
+${ope_Pth}/${ope_Image}_MoCorr.nii.gz \
 TimeSeriesAssemble \
 $TR \
 0 \
@@ -136,7 +136,7 @@ ${ope_split}/${ope_Image}_${basevol}.nii.gz $ope_moco/*_Warped.nii.gz
 
 $ANTSPATH/AverageImages \
 3 \
-${ope_split}/${ope_Image}_MoCorr_meanTemplate.nii.gz \
+${ope_Pth}/${ope_Image}_MoCorr_meanTemplate.nii.gz \
 2 \
 ${ope_split}/${ope_Image}_${basevol}.nii.gz \
 $ope_moco/*_Warped.nii.gz
@@ -151,8 +151,8 @@ rm -rf $ope_split
 echo "-----> Temporary files cleaned up."
 echo " "
 ###############################################################################
-Start Estimating all the functional runs
- Estimation for all the runs #################################################
+# Start Estimating all the functional runs
+ # Estimation for all the runs #################################################
 ###############################################################################
 echo "Start the Estimation of Motion and distortion"
 
@@ -296,11 +296,11 @@ done
 
 # ################################################################################
 # # REGISTER THE OPPOSITE PE TEMPLATE TO THE FUNCTIONAL TEMPLATE - RIGID ONLY
-FIXED=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed.nii.gz
-MASK=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
-MOVING=${ope_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_echo-1_bold_MoCorr_meanTemplate.nii.gz
-OUTPUT=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_MoCorr_meanTemplate_T0_RL_Fixed_reg2func
-OUTPUT_dc=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_
+FIXED=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed.nii.gz
+MASK=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
+MOVING=${ope_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_echo-1_bold_MoCorr_meanTemplate.nii.gz
+OUTPUT=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-LR_run-1_MoCorr_meanTemplate_T0_RL_Fixed_reg2func
+OUTPUT_dc=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_
 
 echo ${FIXED}
 echo ${MASK}
@@ -335,6 +335,7 @@ $ANTSPATH/antsMultivariateTemplateConstruction2.sh \
 -o ${OUTPUT_dc} \
 ${FIXED} \
 ${OUTPUT}_Warped.nii.gz
+
 
 
 echo "-----> Registered Opposite PE template to the functional template."

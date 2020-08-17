@@ -8,30 +8,31 @@
 start_tme=$(date +%s)
 
 Pth='/media/h/P04/Data/BIDS/'
-subject_id='sub-02'
+subject_id='sub-03'
 session_id='ses-001'
 TR=2.604
-pRF_prefix='sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
+pRF_prefix='sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
 fun_suffix='_echo-1_bold'
 
 ################################################################################
 echo "Start the Reslice of Motion and distortion"
 
 fun_Pth=${Pth}${subject_id}/${session_id}/func/
-fixed_Image=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0.nii.gz
-fixed_Msk=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
+fixed_Image=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0.nii.gz
+fixed_Msk=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
+mkdir ${fun_Pth}GLM/
 
 OutPth="${fun_Pth}GLM/pRF/"
 mkdir ${OutPth}
-dcmatTrf=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0GenericAffine.mat
+dcmatTrf=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0GenericAffine.mat
 echo ${dcmatTrf}
-dcwarp=${fun_Pth}sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0warp.nii.gz
+dcwarp=${fun_Pth}sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_template0warp.nii.gz
 echo ${dcwarp}
 
 basevol=1000 # ANTs indexing
 
 #for all the funs during the sessions
-for runid in {1..4}
+for runid in {1..4};
 do
 
   echo "Resclicing pRF Run ${runid}  :  "
@@ -67,7 +68,7 @@ do
     -i ${currIn} \
     -r ${fixed_Image} \
     -o ${currOut01} \
-    -n BSpline[4] \
+    -n LanczosWindowedSinc \
     -t ${dcwarp} \
     -t ${dcmatTrf} \
     -t ${mocoTrf} \
@@ -87,7 +88,7 @@ do
   TimeSeriesAssemble \
   2.604 \
   0 \
-  ${currOutFolder}/*_MC_DC_Coreg_srt.nii.gz
+  ${currOutFolder}*_MC_DC_Coreg_srt.nii.gz
 
   $ANTSPATH/ImageMath \
   4 \
@@ -95,7 +96,7 @@ do
   TimeSeriesAssemble \
   2.604 \
   0 \
-  ${currOutFolder}/*_MC_DC_Coreg.nii.gz
+  ${currOutFolder}*_MC_DC_Coreg.nii.gz
 
 
 

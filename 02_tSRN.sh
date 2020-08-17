@@ -4,20 +4,20 @@
 start_tme=$(date +%s)
 
 # Define all the pRF files
-funPth='/media/h/P04/Data/BIDS/sub-02/ses-001/func/'
+funPth='/media/h/P04/Data/BIDS/sub-03/ses-001/func/'
 export Nii_array=(1 \
-"sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold" \
-"sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-2_echo-1_bold" \
-"sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-3_echo-1_bold" \
-"sub-02_ses-001_task-pRF_acq-EP3D_dir-RL_run-4_echo-1_bold" )
+"sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold" \
+"sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-2_echo-1_bold" \
+"sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-3_echo-1_bold" \
+"sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-4_echo-1_bold" )
 
 numFiles=${#Nii_array[@]}
 numFiles=$(($numFiles - 1))
 
-# mskPth='/media/h/P04/Data/pRFDS/sub-02/ses-001/anat/sub-02/mri/nii/'
+# mskPth='/media/h/P04/Data/pRFDS/sub-03/ses-001/anat/sub-03/mri/nii/'
 # fixed_anat=${mskPth}brain_finalsurfs.nii.gz
-# trfPth='/media/h/P04/Data/pRFDS/sub-02/ses-001/func/TRFs/'
-tSNRPth='/media/h/P04/Data/BIDS/sub-02/ses-001/func/tSNR/'
+# trfPth='/media/h/P04/Data/pRFDS/sub-03/ses-001/func/TRFs/'
+tSNRPth='/media/h/P04/Data/BIDS/sub-03/ses-001/func/tSNR/'
 mkdir ${tSNRPth}
 
 for i in $(seq 1 $numFiles); do
@@ -34,7 +34,7 @@ for i in $(seq 1 $numFiles); do
   # -o ${funPth}${Nii_array[${i}]}_tSNR_reg2anat_bs4.nii.gz \
   # -n BSpline[4] \
   # -r ${fixed_anat} \
-  # -t ${trfPth}P04_sub-02_ses-001_prf_to_fs_0GenericAffine.mat -v
+  # -t ${trfPth}P04_sub-03_ses-001_prf_to_fs_0GenericAffine.mat -v
 
 done
 
