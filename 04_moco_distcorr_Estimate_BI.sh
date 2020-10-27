@@ -2,7 +2,7 @@
 ################################################################################
 
 # Run Motion correction for BI runs
-# 20 mins
+#  4h:0m:58s.
 ################################################################################
 # Directory of sri's motion correction and distortion correction code
 start_tme=$(date +%s)
@@ -18,18 +18,18 @@ normal=$(tput sgr0)
 
 
 Pth='/media/h/P04/Data/BIDS/'
-subject_id='sub-02'
+subject_id='sub-03'
 session_id='ses-002'
 TR=2.604
 ope_Pth=${Pth}${subject_id}/${session_id}/func/func_ope/
-ope_Image=sub-02_ses-002_task-BI_acq-EP3D_dir-LR_run-1_echo-1_bold
+ope_Image=sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-1_echo-1_bold
 
 ################################################################################
 #            Create a Mask and fixed functional Image first                    #
 # START MOTION CORRECTION ON FIRST 5 VOLS
 FixRunID=1
 fun_Pth=${Pth}${subject_id}/${session_id}/func/
-BI_prefix='sub-02_ses-002_task-BI_acq-EP3D_dir-RL_run-'
+BI_prefix='sub-03_ses-002_task-BI_acq-EP3D_dir-RL_run-'
 fun_suffix='_echo-1_bold'
 fun_roi_suffix='_echo-1_bold_roi'
 suffix='.nii.gz'
@@ -296,11 +296,11 @@ done
 
 # ################################################################################
 # # REGISTER THE OPPOSITE PE TEMPLATE TO THE FUNCTIONAL TEMPLATE - RIGID ONLY
-FIXED=${fun_Pth}sub-02_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed.nii.gz
-MASK=${fun_Pth}sub-02_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
-MOVING=${ope_Pth}sub-02_ses-002_task-BI_acq-EP3D_dir-LR_run-1_echo-1_bold_MoCorr_meanTemplate.nii.gz
-OUTPUT=${fun_Pth}sub-02_ses-002_task-BI_acq-EP3D_dir-LR_run-1_MoCorr_meanTemplate_T0_RL_Fixed_reg2func
-OUTPUT_dc=${fun_Pth}sub-02_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_
+FIXED=${fun_Pth}sub-03_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed.nii.gz
+MASK=${fun_Pth}sub-03_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz
+MOVING=${ope_Pth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-1_echo-1_bold_MoCorr_meanTemplate.nii.gz
+OUTPUT=${fun_Pth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-1_MoCorr_meanTemplate_T0_RL_Fixed_reg2func
+OUTPUT_dc=${fun_Pth}sub-03_ses-002_task-BI_acq-EP3D_dir-RL_run-1_echo-1_bold_fixed_dc_
 
 echo ${FIXED}
 echo ${MASK}

@@ -60,15 +60,22 @@ bidscoiner /media/h/P04/Data/ /media/h/P04/Data/BIDS
 
 sesID='ses-002'
 subjID='sub-03'
-mkdir ${PrPth}BIDS/${subjID}/${sesID}/func/func_ope
 PrPth='/media/h/P04/Data/'
+mkdir ${PrPth}BIDS/${subjID}/${sesID}/func/func_ope
 funPth=${PrPth}BIDS/${subjID}/${sesID}/func/
 funOpePth=${PrPth}BIDS/${subjID}/${sesID}/func/func_ope/
 
 
+for runid in {1..6};
+do
+cp ${funPth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.json ${funOpePth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.json
+cp ${funPth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.nii.gz ${funOpePth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.nii.gz
+
+done
 
 
-
-
-
-
+for runid in {1..6};
+do
+rm -f ${funPth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.json
+rm -f ${funPth}sub-03_ses-002_task-BI_acq-EP3D_dir-LR_run-${runid}_echo-1_bold.nii.gz
+done

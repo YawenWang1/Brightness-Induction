@@ -23,20 +23,20 @@ for i in {1..3}; do
 
 $ANTSPATH/antsApplyTransforms -d 3 \
 -i ${prfPth}pRF_results_ovrlp_mask_50prct_${prf_roi_namearray[${i}]}.nii.gz \
--o ${Outpth}pRF_results_ovrlp_mask_50prct_${prf_roi_namearray[${i}]}_reg2fsanat.nii.gz \
+-o ${Outpth}pRF_results_ovrlp_mask_50prct_${prf_roi_namearray[${i}]}_reg2anat.nii.gz \
 -n GenericLabel \
 -r ${fixed_anat} \
--t ${trfPth}sub-02_ses-001_prf_to_fs_0GenericAffine.mat \
+-t ${trfPth}sub-02_ses-001_prf_to_ana_0GenericAffine.mat \
 -v
 done
 
 echo "register the whole stimuli roi"
 $ANTSPATH/antsApplyTransforms -d 3 \
 -i ${prfPth}stimulus_roi_50prct_ori.nii.gz \
--o ${Outpth}stimulus_roi_50prct_ori_reg2fsanat.nii.gz \
+-o ${Outpth}stimulus_roi_50prct_ori_reg2anat.nii.gz \
 -n GenericLabel \
 -r ${fixed_anat} \
--t ${trfPth}sub-02_ses-001_prf_to_fs_0GenericAffine.mat \
+-t ${trfPth}sub-02_ses-001_prf_to_ana_0GenericAffine.mat \
 -v
 
 

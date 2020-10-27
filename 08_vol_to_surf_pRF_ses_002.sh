@@ -7,10 +7,10 @@
 export SUBJECTS_DIR='/media/h/P04/Data/BIDS/sub-02/ses-002/anat'
 export prf_namearray=(1 "polar_angle" "PE_01" "eccentricity" "R2" "SD" "x_pos" "y_pos")
 trfPth='/media/h/P04/Data/BIDS/sub-02/ses-002/func/TRFs/'
-prfPth='/media/h/P04/Data/BIDS/sub-02/ses-001/func/GLM/pRF/pRF_results/'
+prfPth='/media/h/P04/Data/BIDS/sub-02/ses-001/func/GLM/pRF/pRF_results_c/'
 anatPth='/media/h/P04/Data/BIDS/sub-02/ses-002/anat/sub-02/mri/nii/'
 
-fixed_anat=${anatPth}brain_finalsurfs.nii.gz
+fixed_anat=${anatPth}brain.finalsurfs.nii.gz
 Outpth='/media/h/P04/Data/BIDS/sub-02/ses-002/func/GLM/Anat_space/pRF/'
 mkdir ${Outpth}
 
@@ -26,7 +26,7 @@ $ANTSPATH/antsApplyTransforms -d 3 \
 -o ${Outpth}results_${prf_namearray[${i}]}_reg2fsanat.nii.gz \
 -n BSpline[4] \
 -r ${fixed_anat} \
--t ${trfPth}sub-02_ses-001_prf_to_fs_0GenericAffine.mat \
+-t ${trfPth}sub-02_ses-001_prf_to_anat_0GenericAffine.mat \
 -v
 done
 
