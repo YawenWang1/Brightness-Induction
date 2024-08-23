@@ -13,8 +13,8 @@ import csv
 import glob
 from pathlib import Path
 # Directory in Linux
-LogPth = "/media/h/P04/Data/BIDS/sub-02/ses-002/psyc/BI/"
-OptPth = "/media/h/P04/Data/BIDS/sub-02/ses-002/func/DM/"
+LogPth = "/media/g/P04/Data/BIDS/sub-12/ses-002/psyc/BI/"
+OptPth = "/media/g/P04/Data/BIDS/sub-12/ses-002/func/DM_3Predts/"
 
 # Make new folder for GLM design matrix
 Path(OptPth).mkdir(parents=True,exist_ok=True)

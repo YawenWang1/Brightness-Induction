@@ -1,0 +1,47 @@
+# Example config file for MP2RAGE-utils
+# Leave fields empty if not needed
+
+# Required input parameters (full path must be provided)
+INV1: /media/g/P04/Data/BIDS/sub-12/ses-002/anat/spm_bf_correction/INV1_corrected.nii
+INV2: /media/g/P04/Data/BIDS/sub-12/ses-002/anat/spm_bf_correction/INV2_corrected.nii
+UNI: /media/g/P04/Data/BIDS/sub-12/ses-002/anat/spm_bf_correction/UNI_corrected.nii
+
+# Optional input parameters (full path must be provided)
+T1map:
+sa2rageINV2:
+sa2rageB1map:
+tflB1map:
+
+# MP2RAGE parameters (from your protocol)
+B0: 7.0 # Field Strength
+TR: 6.0 # MP2RAGE TR
+TRFLASH: 6.9e-3 # GRE readout TR
+FlipDegrees: 4 5 # Flip angles
+TIs: 800e-3 2750e-3 # Inversion times
+SlicesPerSlab: 256
+PartialFourierInSlice: 0.875
+
+# Background removal options (1 = yes, 0 = no)
+DenoiseUNI: 1
+DenoiseT1map: 1
+DenoiseWeight: 10
+
+# Calculate additional maps (1 = yes, 0 = no)
+CalculateT1map: 1
+CalculateR1map: 1
+CalculateM0map: 1
+
+# B1+ correction (1 = yes, 0 = no), coregister requires SPM
+B1correct: 1
+Coregister: 0
+
+# If B1+ correcting with Sa2RAGE, give parameters (from your protocol)
+sa2rageTR:
+sa2rageTRFLASH:
+sa2rageFlipDegrees:
+sa2rageTIs:
+sa2rageBaseResolution:
+sa2ragePartialFourierInPE:
+sa2rageiPATPhaseEncode:
+sa2rageRefLines:
+sa2rageAverageT1:

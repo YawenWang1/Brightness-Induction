@@ -17,8 +17,8 @@ normal=$(tput sgr0)
 ################################################################################
 
 
-Pth='/media/h/P04/Data/BIDS/'
-subject_id='sub-03'
+Pth='/media/g/P04/Data/BIDS/'
+subject_id='sub-12'
 session_id='ses-001'
 TR=2.604
 ope_Pth=${Pth}${subject_id}/${session_id}/func/func_ope/
@@ -29,7 +29,7 @@ ope_Image=${subject_id}_${session_id}_task-pRF_acq-EP3D_dir-LR_run-1_echo-1_bold
 # START MOTION CORRECTION ON FIRST 5 VOLS
 FixRunID=1
 fun_Pth=${Pth}${subject_id}/${session_id}/func/
-pRF_prefix='sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
+pRF_prefix='sub-12_ses-001_task-pRF_acq-EP3D_dir-RL_run-'
 fun_suffix='_echo-1_bold'
 fun_roi_suffix='_echo-1_bold_roi'
 suffix='.nii.gz'
@@ -245,8 +245,8 @@ echo "-----> It took in $(($nettme / 3600))h:$(($nettme % 3600 / 60))m:$(($nettm
 echo " "
 
 # Open ITKSNAP and remove the cerebellum and do the following operations
-# cd /media/h/P04/Data/BIDS/sub-03/ses-001/func
+cd /media/g/P04/Data/BIDS/sub-12/ses-001/func
 #
-# $ANTSPATH/ImageMath 3 sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz ME sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz 1
-# $ANTSPATH/ImageMath 3 sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz MD sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz 2
-# $ANTSPATH/ImageMath 3 sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz MD sub-03_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz 2
+$ANTSPATH/ImageMath 3 sub-12_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz MD sub-12_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz 2
+
+$ANTSPATH/ImageMath 3 sub-12_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz MD sub-12_ses-001_task-pRF_acq-EP3D_dir-RL_run-1_echo-1_bold_fixedMask_brain.nii.gz 2
